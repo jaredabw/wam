@@ -115,10 +115,11 @@ class GradesTable():
         MAX = 'MAX'
         WEIGHT = 'WEIGHT'
         WEIGHTED_MARK = 'WEIGHTED MARK'
-        s = f'\n{NAME:<{name_length}} {MARK:>5} / {MAX:<3} | {WEIGHT:<6} | {WEIGHTED_MARK}\n'
+        s = f'\n{NAME:<{name_length}} {MARK:>5} / {MAX:<3}       (%) | {WEIGHT:<6} | {WEIGHTED_MARK}\n'
         for row in self.rows:
             ttitle = row.title + ':'
-            s += f'{ttitle:<{name_length}} {row.grade:>5g} / {row.max_grade:<3g} | {round(row.weight,4):<6g} | {round(row.weighted_mark,4):g}\n'
+            percent = '(' + str('%g'%round(row.grade/row.max_grade*100, 2)) + '%)'
+            s += f'{ttitle:<{name_length}} {row.grade:>5g} / {row.max_grade:<3g} {percent:>9} | {round(row.weight,4):<6g} | {round(row.weighted_mark,4):g}\n'
 
         total_weighted_mark = sum([row.weighted_mark for row in self.rows])
         s += f'\nTotal weighted mark: {round(total_weighted_mark*100,2)}%\n'
