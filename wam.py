@@ -95,7 +95,7 @@ class GradesTable():
             self.verify_weights()
 
         elif total_weight > 1:
-            print(f'\nTotal weight is over 100%. Total weight: {total_weight*100}%.')
+            print(f'\nTotal weight is over 100%. Total weight: {round(total_weight*100,2):g}%.')
 
             self.recalculate()
 
