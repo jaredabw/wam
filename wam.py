@@ -109,12 +109,19 @@ class GradesTable():
     def __str__(self) -> str:
         self.rows.sort()
         self.verify_weights()
-        s = '\nNAME: MARK/MAX | WEIGHT | WEIGHTED MARK\n'
+        name_length = max([len(row.title) for row in self.rows]) + 1
+        NAME = 'NAME:'
+        MARK = 'MARK'
+        MAX = 'MAX'
+        WEIGHT = 'WEIGHT'
+        WEIGHTED_MARK = 'WEIGHTED MARK'
+        s = f'\n{NAME:<{name_length}} {MARK:>5} / {MAX:<4} | {WEIGHT:<6} | {WEIGHTED_MARK}\n'
         for row in self.rows:
-            s += str(row) + '\n'
+            ttitle = row.title + ':'
+            s += f'{ttitle:<{name_length}} {row.grade:>5} / {round(row.max_grade):<4} | {round(row.weight,4):<6} | {round(row.weighted_mark,4)}\n'
 
         total_weighted_mark = sum([row.weighted_mark for row in self.rows])
-        s += f'\nTotal weighted mark: {round(total_weighted_mark*100,2)}%'
+        s += f'\nTotal weighted mark: {round(total_weighted_mark*100,2)}%\n'
         
         return s
 
