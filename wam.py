@@ -110,12 +110,7 @@ class GradesTable():
         self.rows.sort()
         self.verify_weights()
         name_length = max([len(row.title) for row in self.rows]) + 1
-        NAME = 'NAME:'
-        MARK = 'MARK'
-        MAX = 'MAX'
-        WEIGHT = 'WEIGHT'
-        WEIGHTED_MARK = 'WEIGHTED MARK'
-        s = f'\n{NAME:<{name_length}} {MARK:>5} / {MAX:<3}       (%) | {WEIGHT:<6} | {WEIGHTED_MARK}\n'
+        s = f'\n{"NAME":<{name_length}} {"MARK":>5} / {"MAX":<3}       (%) | {"WEIGHT":<6} | {"WEIGHTED MARK"}\n'
         for row in self.rows:
             ttitle = row.title + ':'
             percent = '(' + str('%g'%round(row.grade/row.max_grade*100, 2)) + '%)'
